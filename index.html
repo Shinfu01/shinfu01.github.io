@@ -11,7 +11,6 @@
 
   html {
     scroll-behavior: smooth;
-    /* Added this line to offset the scroll for your sticky navbar */
     scroll-padding-top: 75px; 
   }
 
@@ -24,7 +23,7 @@
     overflow-x: hidden;
   }
 
-  /* NAV - Glassmorphism update */
+  /* GLASS MORPHS! */
   nav {
     position: sticky;
     top: 0;
@@ -60,8 +59,6 @@
     transition: color 0.3s ease;
   }
   .nav-links a:hover { color: #1a56db; }
-  
-  /* Nav Link Underline Animation */
   .nav-links a::after {
     content: '';
     position: absolute;
@@ -76,7 +73,7 @@
     width: 100%;
   }
 
-  /* HERO */
+  /* MAIN SHIT */
   header {
     padding: 120px 40px 80px;
     background-color: #fafbfc;
@@ -90,7 +87,6 @@
     max-width: 760px;
     margin: 0 auto;
   }
-  /* (overridden below for profile layout) */
   .badge {
     display: inline-block;
     background: rgba(26, 86, 219, 0.1);
@@ -154,7 +150,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   }
 
-  /* MAIN */
+  /* MAIN 2 SHIT*/
   .container {
     max-width: 760px;
     margin: 0 auto;
@@ -192,7 +188,7 @@
   /* ABOUT */
   #about p { color: #444; margin-bottom: 16px; font-size: 1.05rem; }
 
-  /* BENTO / GLASS CARDS SHARED STYLES */
+  /* BENTO STYLE CARDS YES */
   .bento-card {
     background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(10px);
@@ -209,7 +205,6 @@
     border-color: rgba(26, 86, 219, 0.2);
   }
 
-  /* EDUCATION */
   .edu-entry {
     display: grid;
     grid-template-columns: 140px 1fr;
@@ -245,7 +240,6 @@
   }
   .edu-desc { font-size: 13.5px; color: #666; }
 
-  /* ACHIEVEMENTS */
   .achieve-list {
     list-style: none;
     padding: 0;
@@ -279,7 +273,7 @@
     box-shadow: 0 0 8px rgba(26, 86, 219, 0.5);
   }
 
-  /* SKILLS */
+
   .skills-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -319,7 +313,7 @@
     transform: translateY(-2px);
   }
 
-  /* PROJECTS */
+  
   .project-header {
     display: flex;
     justify-content: space-between;
@@ -358,7 +352,7 @@
     margin-top: 10px;
   }
 
-  /* CONTACT */
+  
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -401,7 +395,7 @@
     color: #888;
   }
 
-  /* SCROLL REVEAL ANIMATIONS */
+  
   .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -424,7 +418,7 @@
     header h1 { font-size: 2.4rem; }
   }
 
-  /* JS TYPING CURSOR */
+  
   .typed-name {
     color: #1a56db;;
     border-right: 2px solid transparent;
@@ -448,7 +442,7 @@
     border-right: 2px solid transparent;
   }
 
-  /* HEADER LAYOUT WITH PROFILE PHOTO */
+  
   .header-inner {
     display: flex;
     align-items: center;
@@ -501,7 +495,7 @@
     border-radius: 50%;
   }
 
-  /* Override original header-inner max-width to be wider for the flex layout */
+  
   .header-inner {
     max-width: 860px;
   }
@@ -699,7 +693,6 @@
 <footer class="reveal">&copy; 2026 Shawn Lawrence San Pedro</footer>
 
 <script>
-  // Smooth scroll for nav links (JS enhancement on top of CSS scroll-behavior)
   document.querySelectorAll('.nav-links a[href^="#"]').forEach(link => {
     link.addEventListener('click', function(e) {
       const target = document.querySelector(this.getAttribute('href'));
@@ -710,7 +703,6 @@
     });
   });
 
-  // Also handle header CTA buttons
   document.querySelectorAll('.header-links a[href^="#"]').forEach(link => {
     link.addEventListener('click', function(e) {
       const target = document.querySelector(this.getAttribute('href'));
@@ -721,7 +713,7 @@
     });
   });
 
-  // JavaScript Typing Effect
+  
   const textToType = "Shawn Lawrence San Pedro!";
   const typeTarget = document.querySelector('.typed-name');
   const typingSpeed = 80; // milliseconds per character
@@ -736,7 +728,7 @@
     }
   }
 
-  // Scroll Reveal Observer
+  
   function reveal() {
     var reveals = document.querySelectorAll(".reveal");
     for (var i = 0; i < reveals.length; i++) {
