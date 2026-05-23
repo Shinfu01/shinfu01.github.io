@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shawn Lawrence San Pedro</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    color: #111;
+    background: #f9f9f9;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+  }
+  .nav-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: #1a56db;
+    padding: 18px 0;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 4px; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 400;
+    color: #555;
+    padding: 18px 12px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: #1a56db; }
+
+  /* HERO */
+  header {
+    background: #fff;
+    padding: 72px 40px 64px;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .header-inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .badge {
+    display: inline-block;
+    background: #eff6ff;
+    color: #1a56db;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  header h1 {
+    font-size: 2.6rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: #111;
+    margin-bottom: 14px;
+  }
+  header h1 span { color: #1a56db; }
+  header p {
+    font-size: 1rem;
+    color: #555;
+    max-width: 520px;
+    font-weight: 300;
+  }
+  .header-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 9px 20px;
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: #1a56db;
+    color: #fff;
+  }
+  .btn-primary:hover { background: #1448b8; }
+  .btn-outline {
+    border: 1px solid #d1d5db;
+    color: #333;
+    background: #fff;
+  }
+  .btn-outline:hover { border-color: #1a56db; color: #1a56db; }
+
+  /* MAIN */
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  section {
+    padding: 56px 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #1a56db;
+    margin-bottom: 6px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #111;
+    margin-bottom: 28px;
+  }
+
+  /* ABOUT */
+  #about p { color: #444; margin-bottom: 10px; }
+
+  /* EDUCATION */
+  .edu-entry {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 20px;
+    padding: 20px 0;
+    border-top: 1px solid #f0f0f0;
+  }
+  .edu-entry:first-of-type { border-top: none; padding-top: 0; }
+  .edu-year {
+    font-size: 12px;
+    color: #888;
+    padding-top: 3px;
+    font-weight: 400;
+  }
+  .edu-school {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 2px;
+  }
+  .edu-degree {
+    font-size: 13px;
+    color: #1a56db;
+    margin-bottom: 6px;
+  }
+  .edu-desc { font-size: 13px; color: #666; }
+
+  /* ACHIEVEMENTS */
+  .achieve-list {
+    list-style: none;
+    padding: 0;
+  }
+  .achieve-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid #f0f0f0;
+    font-size: 14px;
+    color: #333;
+  }
+  .achieve-list li:first-child { border-top: none; padding-top: 0; }
+  .achieve-dot {
+    width: 6px;
+    height: 6px;
+    min-width: 6px;
+    border-radius: 50%;
+    background: #1a56db;
+    margin-top: 8px;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .skill-group h3 {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #888;
+    margin-bottom: 12px;
+  }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .skill-tag {
+    background: #eff6ff;
+    color: #1a56db;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 6px;
+  }
+
+  /* PROJECTS */
+  .project {
+    padding: 20px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+  }
+  .project:hover { border-color: #1a56db; }
+  .project:last-child { margin-bottom: 0; }
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+    gap: 12px;
+  }
+  .project h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #111;
+  }
+  .project-tech {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .tech-badge {
+    background: #f3f4f6;
+    color: #444;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 4px;
+  }
+  .project p {
+    font-size: 13px;
+    color: #666;
+    margin-top: 6px;
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 16px 18px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .contact-item:hover { border-color: #1a56db; }
+  .contact-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #aaa;
+  }
+  .contact-val {
+    font-size: 14px;
+    color: #1a56db;
+    font-weight: 500;
+  }
+
+  footer {
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 12px;
+    color: #aaa;
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 20px; }
+    header { padding: 48px 20px; }
+    .container { padding: 0 20px; }
+    .edu-entry { grid-template-columns: 1fr; gap: 4px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-name">SLSP</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#achievements">Achievements</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header>
+  <div class="header-inner">
+    <div class="badge">Welcome!</div>
+    <h1>Hi, I'm <span>Shawn</span> Lawrence<br>San Pedro.</h1>
+    <p>First year incoming BSIT student from the Philippines with a background in Competitive Programming and Website Development.</p>
+    <div class="header-links">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Contact Me</a>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <section id="about">
+    <div class="section-label">About</div>
+    <h2>A little about me</h2>
+    <p>I'm Shawn Lawrence San Pedro, a first-year incoming BSIT student from the Philippines studying at PUP - Para&ntildeaque Campus.</p>
+    <p>I have been programming since 2024 when I got introduced to Competitive Programming. Since then, I have been hooked when it comes to doing programming problems and projects.
+      Aside from programming or any other related tasks, I enjoy playing idle games, badminton, and eat outside with friends.
+    </p>
+  </section>
+
+  <section id="education">
+    <div class="section-label">Education</div>
+    <h2>Academic background</h2>
+
+    <div class="edu-entry">
+      <div class="edu-year">2026 – Present</div>
+      <div>
+        <div class="edu-school">PUP - Para&ntildeaque Campus</div>
+        <div class="edu-degree">BS in Information Technology</div>
+        <div class="edu-desc">Currently studying IT. Focused on Data Science (self-study), with consistent academic performance along with studying web development.</div>
+      </div>
+    </div>
+
+    <div class="edu-entry">
+      <div class="edu-year">2024 – 2026</div>
+      <div>
+        <div class="edu-school">STI College - Las Pi&ntildeas</div>
+        <div class="edu-degree">ITMAWD Strand</div>
+        <div class="edu-desc">Completed the ITMAWD strand. Built a strong foundation in Website Development and Mobile Application Development along with joining several programming competitions.</div>
+      </div>
+    </div>
+
+    <div class="edu-entry">
+      <div class="edu-year">2020 – 2024</div>
+      <div>
+        <div class="edu-school">St. Joseph's Academy of Las Pinas City</div>
+        <div class="edu-degree">Secondary Education</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="achievements">
+    <div class="section-label">Achievements & Extra-Curriculars</div>
+    <h2>Recognition & involvement</h2>
+    <ul class="achieve-list">
+      <li><div class="achieve-dot"></div> NOI.PH - Eliminations [2024 - 2026]</li>
+      <li><div class="achieve-dot"></div> ESTADISTIKA [2025]</li>
+      <li><div class="achieve-dot"></div> Philippine Linguistics Olympiad [2025-2026]</li>
+      <li><div class="achieve-dot"></div> California Informatics Competition [Silver, 2026]</li>
+      <li><div class="achieve-dot"></div> Tagisan ng Talino: Codefest [2025]</li>
+    </ul>
+  </section>
+
+  <section id="skills">
+    <div class="section-label">Skills</div>
+    <h2>What I work with</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Languages</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">C++</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Web</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">HTML & CSS</span>
+          <span class="skill-tag">ASP.NET Framework</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Tools</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">GitHub</span>
+          <span class="skill-tag">VS Code</span>
+          <span class="skill-tag">Visual Studio</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Soft Skills</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Leadership</span>
+          <span class="skill-tag">Communication</span>
+          <span class="skill-tag">Problem Solving</span>
+          <span class="skill-tag">Teamwork</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-label">Projects</div>
+    <h2>Things I've built</h2>
+
+    <div class="project">
+      <div class="project-header">
+        <h3>Mindware - Mobile Application</h3>
+        <div class="project-tech">
+          <span class="tech-badge">.NET MAUI Framework</span>
+          <span class="tech-badge">C#</span>
+          <span class="tech-badge">XAML</span>
+        </div>
+      </div>
+      <p>Mindware is a programming application that students can use to improve their overall problem-solving abilities through various programming challenges.</p>
+      <p>It offers a live sandbox which users can use to code and a self-built OnlineJudge which judges users output based on their solution.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <h2>Get in touch</h2>
+    <div class="contact-grid">
+      <a href="mailto:sanpedro.shawnnn@email.com" class="contact-item">
+        <span class="contact-label">Email</span>
+        <span class="contact-val">sanpedro.shawnnn@email.com</span>
+      </a>
+      <a href="https://github.com/Shinfu01" target="_blank" class="contact-item">
+        <span class="contact-label">GitHub</span>
+        <span class="contact-val">github.com/Shinfu01</span>
+      </a>
+      <a href="https://linkedin.com/" target="_blank" class="contact-item">
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-val">linkedin.com/in/shawnlsp</span>
+      </a>
+      <div class="contact-item">
+        <span class="contact-label">Location</span>
+        <span class="contact-val">Philippines</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>© 2025 Shawn Lawrence San Pedro</footer>
+
+</body>
+</html>
