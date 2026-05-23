@@ -5,23 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SLSP</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior:smooth;
+  }
 
   body {
     font-family: 'Inter', sans-serif;
     color: #111;
-    background: #f9f9f9;
+    background-color: #fafbfc;
     font-size: 15px;
     line-height: 1.7;
+    overflow-x: hidden;
   }
 
-  /* NAV */
+  /* NAV - Glassmorphism update */
   nav {
     position: sticky;
     top: 0;
-    background: #fff;
-    border-bottom: 1px solid #e5e5e5;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
     z-index: 10;
     display: flex;
     justify-content: space-between;
@@ -34,23 +42,47 @@
     color: #1a56db;
     padding: 18px 0;
     text-decoration: none;
+    transition: transform 0.2s ease;
   }
-  .nav-links { display: flex; gap: 4px; }
+  .nav-name:hover {
+    transform: scale(1.05);
+  }
+  .nav-links { display: flex; gap: 16px; }
   .nav-links a {
+    position: relative;
     text-decoration: none;
     font-size: 13px;
-    font-weight: 400;
+    font-weight: 500;
     color: #555;
-    padding: 18px 12px;
-    transition: color 0.2s;
+    padding: 18px 4px;
+    transition: color 0.3s ease;
   }
   .nav-links a:hover { color: #1a56db; }
+  
+  /* Nav Link Underline Animation */
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 14px;
+    left: 0;
+    background-color: #1a56db;
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover::after {
+    width: 100%;
+  }
 
   /* HERO */
   header {
-    background: #fff;
-    padding: 72px 40px 64px;
-    border-bottom: 1px solid #e5e5e5;
+    padding: 120px 40px 80px;
+    background-color: #fafbfc;
+    background-image: 
+      linear-gradient(#eaedf2 1px, transparent 1px),
+      linear-gradient(90deg, #eaedf2 1px, transparent 1px);
+    background-size: 32px 32px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
   .header-inner {
     max-width: 760px;
@@ -58,33 +90,33 @@
   }
   .badge {
     display: inline-block;
-    background: #eff6ff;
+    background: rgba(26, 86, 219, 0.1);
     color: #1a56db;
     font-size: 12px;
-    font-weight: 500;
-    padding: 4px 12px;
+    font-weight: 600;
+    padding: 6px 14px;
     border-radius: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    border: 1px solid rgba(26, 86, 219, 0.2);
   }
   header h1 {
-    font-size: 2.6rem;
+    font-size: 3rem;
     font-weight: 600;
     letter-spacing: -0.03em;
-    line-height: 1.15;
+    line-height: 1.2;
     color: #111;
-    margin-bottom: 14px;
+    margin-bottom: 16px;
   }
-  header h1 span { color: #1a56db; }
   header p {
-    font-size: 1rem;
+    font-size: 1.05rem;
     color: #555;
-    max-width: 520px;
+    max-width: 540px;
     font-weight: 300;
   }
   .header-links {
     display: flex;
     gap: 12px;
-    margin-top: 28px;
+    margin-top: 32px;
     flex-wrap: wrap;
   }
   .btn {
@@ -92,21 +124,32 @@
     text-decoration: none;
     font-size: 13px;
     font-weight: 500;
-    padding: 9px 20px;
-    border-radius: 8px;
-    transition: all 0.2s;
+    padding: 10px 24px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
   }
   .btn-primary {
     background: #1a56db;
     color: #fff;
+    box-shadow: 0 4px 12px rgba(26, 86, 219, 0.25);
   }
-  .btn-primary:hover { background: #1448b8; }
+  .btn-primary:hover { 
+    background: #1448b8; 
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(26, 86, 219, 0.35);
+  }
   .btn-outline {
     border: 1px solid #d1d5db;
     color: #333;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.5);
   }
-  .btn-outline:hover { border-color: #1a56db; color: #1a56db; }
+  .btn-outline:hover { 
+    border-color: #1a56db; 
+    color: #1a56db; 
+    background: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
 
   /* MAIN */
   .container {
@@ -116,71 +159,112 @@
   }
 
   section {
-    padding: 56px 0;
-    border-bottom: 1px solid #e5e5e5;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.068);
+  }
+  section:last-of-type {
+    border-bottom: none;
   }
 
   .section-label {
     font-size: 11px;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: #1a56db;
-    margin-bottom: 6px;
+    letter-spacing: 0.12em;
+    margin-bottom: 1px;
+    background: linear-gradient(90deg, #1a56db, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
   }
 
   h2 {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 600;
     letter-spacing: -0.02em;
     color: #111;
-    margin-bottom: 28px;
+    margin-bottom: 10px;
   }
 
   /* ABOUT */
-  #about p { color: #444; margin-bottom: 10px; }
+  #about p { color: #444; margin-bottom: 16px; font-size: 1.05rem; }
+
+  /* BENTO / GLASS CARDS SHARED STYLES */
+  .bento-card {
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.3s ease;
+  }
+  .bento-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+    border-color: rgba(26, 86, 219, 0.2);
+  }
 
   /* EDUCATION */
   .edu-entry {
     display: grid;
     grid-template-columns: 140px 1fr;
     gap: 20px;
-    padding: 20px 0;
-    border-top: 1px solid #f0f0f0;
+    padding: 24px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    transition: background 0.3s ease;
+    border-radius: 12px;
+    transition: 0.2s  ;
   }
   .edu-entry:first-of-type { border-top: none; padding-top: 0; }
+  .edu-entry:hover {
+    transform: translateX(6px);
+    color: #1a56db;
+  }
   .edu-year {
     font-size: 12px;
     color: #888;
     padding-top: 3px;
-    font-weight: 400;
+    font-weight: 500;
   }
   .edu-school {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 600;
     color: #111;
     margin-bottom: 2px;
   }
   .edu-degree {
-    font-size: 13px;
+    font-size: 13.5px;
     color: #1a56db;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
+    font-weight: 500;
   }
-  .edu-desc { font-size: 13px; color: #666; }
+  .edu-desc { font-size: 13.5px; color: #666; }
 
   /* ACHIEVEMENTS */
   .achieve-list {
     list-style: none;
     padding: 0;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    padding: 20px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
   }
   .achieve-list li {
     display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 12px 0;
-    border-top: 1px solid #f0f0f0;
-    font-size: 14px;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 14.5px;
     color: #333;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+  .achieve-list li:hover {
+    transform: translateX(3px);
+    color: #1a56db;
   }
   .achieve-list li:first-child { border-top: none; padding-top: 0; }
   .achieve-dot {
@@ -189,14 +273,14 @@
     min-width: 6px;
     border-radius: 50%;
     background: #1a56db;
-    margin-top: 8px;
+    box-shadow: 0 0 8px rgba(26, 86, 219, 0.5);
   }
 
   /* SKILLS */
   .skills-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 28px;
+    gap: 24px;
   }
   .skill-group h3 {
     font-size: 12px;
@@ -204,135 +288,162 @@
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: #888;
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
   .skill-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 10px;
   }
   .skill-tag {
+    background: #fff;
+    color: #111;
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+  }
+  .skill-group.bento-card:hover .skill-tag {
+    border-color: rgba(26, 86, 219, 0.2);
+  }
+  .skill-tag:hover {
     background: #eff6ff;
     color: #1a56db;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 5px 12px;
-    border-radius: 6px;
+    border-color: #bfdbfe;
+    transform: translateY(-2px);
   }
 
   /* PROJECTS */
-  .project {
-    padding: 20px;
-    background: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 10px;
-    margin-bottom: 14px;
-    transition: border-color 0.2s;
-  }
-  .project:hover { border-color: #1a56db; }
-  .project:last-child { margin-bottom: 0; }
   .project-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 6px;
+    margin-bottom: 16px;
     gap: 12px;
   }
   .project h3 {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 600;
     color: #111;
   }
   .project-tech {
     display: flex;
-    gap: 6px;
+    gap: 8px;
     flex-wrap: wrap;
   }
   .tech-badge {
-    background: #f3f4f6;
-    color: #444;
+    background: #f1f5f9;
+    color: #475569;
     font-size: 11px;
-    font-weight: 500;
-    padding: 3px 9px;
-    border-radius: 4px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+  }
+  .project.bento-card:hover .tech-badge {
+    background: #fff;
+    border-color: #e2e8f0;
+    color: #1a56db;
   }
   .project p {
-    font-size: 13px;
-    color: #666;
-    margin-top: 6px;
+    font-size: 14px;
+    color: #555;
+    margin-top: 10px;
   }
 
   /* CONTACT */
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
+    gap: 16px;
   }
   .contact-item {
     display: flex;
     flex-direction: column;
-    gap: 2px;
-    padding: 16px 18px;
-    background: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 10px;
+    gap: 6px;
     text-decoration: none;
-    transition: border-color 0.2s;
+    cursor: pointer;
   }
-  .contact-item:hover { border-color: #1a56db; }
   .contact-label {
     font-size: 11px;
     font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #aaa;
+    letter-spacing: 0.1em;
+    color: #888;
+    display: flex;        /* Added to align icons with text */
+    align-items: center;  /* Added to align icons with text */
+    gap: 6px;             /* Added to align icons with text */
+  }
+  .contact-label i {
+    font-size: 14px;      /* Slightly larger font for the icons */
   }
   .contact-val {
-    font-size: 14px;
-    color: #1a56db;
+    font-size: 14.5px;
+    color: #111;
     font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  .contact-item:hover .contact-val {
+    color: #1a56db;
   }
 
   footer {
     text-align: center;
-    padding: 32px 20px;
-    font-size: 12px;
-    color: #aaa;
+    padding: 60px 20px;
+    font-size: 13px;
+    color: #888;
+  }
+
+  /* SCROLL REVEAL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   @media (max-width: 640px) {
     nav { padding: 0 20px; }
-    header { padding: 48px 20px; }
+    header { padding: 80px 20px 56px; }
     .container { padding: 0 20px; }
-    .edu-entry { grid-template-columns: 1fr; gap: 4px; }
+    .edu-entry { grid-template-columns: 1fr; gap: 8px; }
+    .edu-entry:hover { padding-left: 0; }
     .skills-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
     .nav-links { display: none; }
+    header h1 { font-size: 2.4rem; }
   }
 
-  /* ANIMATIONS */
+  /* JS TYPING CURSOR */
   .typed-name {
-  display: inline-block;
-  color: #1a56db;
-  overflow: hidden;
-  white-space: nowrap;
-  width: 0;
-  border-right: 2px solid #1a56db;
-  animation:
-    typing 2.5s steps(25, end) 0.5s forwards,
-    blink-caret 0.7s step-end infinite;
+    color: white;
+    border-right: 2px solid transparent;
   }
-
-  @keyframes typing {
-    from { width: 0; }
-    to   { width: 5.8in; }
+  .cursor-blink {
+    animation: blink-caret 0.75s step-end infinite;
   }
 
   @keyframes blink-caret {
-    0%, 100% { border-color: #1a56db; }
-    50%      { border-color: transparent; }
+    from, to { border-color: transparent; }
+    50% { border-color: #1a56db; }
   }
 
+  .block{
+    background-color: #1a56db;
+    color: white;
+  }
+
+  .typed-name-blue {
+    color: #1a56db;
+    border-right: 2px solid transparent;
+  }
 </style>
 </head>
 <body>
@@ -350,9 +461,9 @@
 </nav>
 
 <header>
-  <div class="header-inner">
+  <div class="header-inner reveal">
     <div class="badge">Welcome!</div>
-    <h1>Hi, I'm <br><span class="typed-name">Shawn Lawrence San Pedro.</span></h1>
+    <h1>Hi, I'm <br><span class="block typed-name cursor-blink"></span></h1>
     <p>First year incoming BSIT student from the Philippines with a background in Competitive Programming and Website Development.</p>
     <div class="header-links">
       <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -363,23 +474,24 @@
 
 <div class="container">
 
-  <section id="about">
+  <section id="about" class="reveal">
     <div class="section-label">About</div>
     <h2>A little about me</h2>
-    <p>I'm Shawn Lawrence San Pedro, a first-year incoming BSIT student from the Philippines studying at PUP - Para&ntildeaque Campus.</p>
-    <p>I have been programming since 2024 when I got introduced to Competitive Programming. Since then, I have been hooked when it comes to doing programming problems and projects.
-      Aside from programming or any other related tasks, I enjoy playing idle games, badminton, and eat outside with friends.
-    </p>
+    <p>I'm <span class="typed-name-blue">Shawn Lawrence San Pedro</span>, an incoming BSIT student at PUP – Parañaque Campus based in the Philippines.</p>
+    <p>I started programming in 2022 by building small game projects out of curiosity and for fun. Over time, that curiosity turned into a genuine interest in problem-solving, software development, and learning how things work behind the scenes.</p>
+    <p>In 2024, I was introduced to competitive programming, which pushed me to think more critically and write more efficient solutions. Since then, I've enjoyed exploring programming through both competitions and personal projects — usually small, experimental, and idea-driven.</p>
+    <p>Outside of tech, I spend time watching television series, studying math, and exploring different interests that keep me learning and creating.</p>
+    <p>Right now, I'm focused on improving my skills, building meaningful projects, and continuing to grow as a developer.</p>
   </section>
 
-  <section id="education">
+  <section id="education" class="reveal">
     <div class="section-label">Education</div>
     <h2>Academic background</h2>
 
     <div class="edu-entry">
       <div class="edu-year">2026 – Present</div>
       <div>
-        <div class="edu-school">PUP - Para&ntildeaque Campus</div>
+        <div class="edu-school">PUP - Parañaque Campus</div>
         <div class="edu-degree">BS in Information Technology</div>
         <div class="edu-desc">Currently studying IT. Focused on Data Science (self-study), with consistent academic performance along with studying web development.</div>
       </div>
@@ -388,7 +500,7 @@
     <div class="edu-entry">
       <div class="edu-year">2024 – 2026</div>
       <div>
-        <div class="edu-school">STI College - Las Pi&ntildeas</div>
+        <div class="edu-school">STI College - Las Piñas</div>
         <div class="edu-degree">ITMAWD Strand</div>
         <div class="edu-desc">Completed the ITMAWD strand. Built a strong foundation in Website Development and Mobile Application Development along with joining several programming competitions.</div>
       </div>
@@ -403,7 +515,7 @@
     </div>
   </section>
 
-  <section id="achievements">
+  <section id="achievements" class="reveal">
     <div class="section-label">Achievements & Extra-Curriculars</div>
     <h2>Recognition & involvement</h2>
     <ul class="achieve-list">
@@ -415,25 +527,25 @@
     </ul>
   </section>
 
-  <section id="skills">
+  <section id="skills" class="reveal">
     <div class="section-label">Skills</div>
     <h2>What I work with</h2>
     <div class="skills-grid">
-      <div class="skill-group">
+      <div class="skill-group bento-card">
         <h3>Languages</h3>
         <div class="skill-tags">
           <span class="skill-tag">Python</span>
           <span class="skill-tag">C++</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-group bento-card">
         <h3>Web</h3>
         <div class="skill-tags">
           <span class="skill-tag">HTML & CSS</span>
           <span class="skill-tag">ASP.NET Framework</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-group bento-card">
         <h3>Tools</h3>
         <div class="skill-tags">
           <span class="skill-tag">GitHub</span>
@@ -441,7 +553,7 @@
           <span class="skill-tag">Visual Studio</span>
         </div>
       </div>
-      <div class="skill-group">
+      <div class="skill-group bento-card">
         <h3>Soft Skills</h3>
         <div class="skill-tags">
           <span class="skill-tag">Leadership</span>
@@ -453,11 +565,11 @@
     </div>
   </section>
 
-  <section id="projects">
+  <section id="projects" class="reveal">
     <div class="section-label">Projects</div>
-    <h2>Things I've built</h2>
+    <h2>Projects that I've made</h2>
 
-    <div class="project">
+    <div class="project bento-card">
       <div class="project-header">
         <h3>Mindware - Mobile Application</h3>
         <div class="project-tech">
@@ -468,27 +580,28 @@
       </div>
       <p>Mindware is a programming application that students can use to improve their overall problem-solving abilities through various programming challenges.</p>
       <p>It offers a live sandbox which users can use to code and a self-built OnlineJudge which judges users output based on their solution.</p>
+      <p>This was for a school research back in Grade 12 where I spent about 4 months working on the project.</p>
     </div>
   </section>
 
-  <section id="contact">
+  <section id="contact" class="reveal">
     <div class="section-label">Contact</div>
     <h2>Get in touch</h2>
     <div class="contact-grid">
-      <a href="mailto:sanpedro.shawnnn@email.com" class="contact-item">
-        <span class="contact-label">Email</span>
-        <span class="contact-val">sanpedro.shawnnn@email.com</span>
+      <a href="mailto:sanpedro.shawnnn@gmail.com" class="contact-item bento-card">
+        <span class="contact-label"><i class="fa-solid fa-envelope"></i> Email</span>
+        <span class="contact-val">sanpedro.shawnnn@gmail.com</span>
       </a>
-      <a href="https://github.com/Shinfu01" target="_blank" class="contact-item">
-        <span class="contact-label">GitHub</span>
+      <a href="https://github.com/Shinfu01" target="_blank" class="contact-item bento-card">
+        <span class="contact-label"><i class="fa-brands fa-github"></i> GitHub</span>
         <span class="contact-val">github.com/Shinfu01</span>
       </a>
-      <a href="https://linkedin.com/" target="_blank" class="contact-item">
-        <span class="contact-label">LinkedIn</span>
-        <span class="contact-val">linkedin.com/in/shawnlsp</span>
+      <a href="https://linkedin.com/" target="_blank" class="contact-item bento-card">
+        <span class="contact-label"><i class="fa-brands fa-linkedin"></i> LinkedIn</span>
+        <span class="contact-val">TBA</span>
       </a>
-      <div class="contact-item">
-        <span class="contact-label">Location</span>
+      <div class="contact-item bento-card">
+        <span class="contact-label"><i class="fa-solid fa-location-dot"></i> Location</span>
         <span class="contact-val">Philippines</span>
       </div>
     </div>
@@ -496,7 +609,47 @@
 
 </div>
 
-<footer>&copy 2026 Shawn Lawrence San Pedro</footer>
+<footer class="reveal">&copy; 2026 Shawn Lawrence San Pedro</footer>
+
+<script>
+  // JavaScript Typing Effect
+  const textToType = "Shawn Lawrence San Pedro!";
+  const typeTarget = document.querySelector('.typed-name');
+  const typingSpeed = 80; // milliseconds per character
+  const initialDelay = 500; // delay before typing starts
+  let charIndex = 0;
+
+  function typeWriter() {
+    if (charIndex < textToType.length) {
+      typeTarget.textContent += textToType.charAt(charIndex);
+      charIndex++;
+      setTimeout(typeWriter, typingSpeed);
+    }
+  }
+
+  // Scroll Reveal Observer
+  function reveal() {
+    var reveals = document.querySelectorAll(".reveal");
+    for (var i = 0; i < reveals.length; i++) {
+      var windowHeight = window.innerHeight;
+      var elementTop = reveals[i].getBoundingClientRect().top;
+      var elementVisible = 100;
+      if (elementTop < windowHeight - elementVisible) {
+        reveals[i].classList.add("active");
+      }
+    }
+  }
+
+  // Trigger animations on load
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(typeWriter, initialDelay);
+    // Initial check for elements in view
+    setTimeout(reveal, 100); 
+  });
+
+  // Listen for scroll
+  window.addEventListener("scroll", reveal);
+</script>
 
 </body>
 </html>
